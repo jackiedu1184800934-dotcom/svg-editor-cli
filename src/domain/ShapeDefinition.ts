@@ -18,7 +18,7 @@ export class ShapeDefinition {
   read(id: string, attributes: ReadonlyMap<string, string>, content: string): Shape {
     const shape = new this.constructorType(id);
     for (const [key, value] of attributes) {
-      if (key !== 'id') shape.set(key, value);
+      if (key !== 'id') shape.readAttribute(key, value);
     }
     if (shape.textContent !== undefined) shape.set('text', content);
     return shape;
