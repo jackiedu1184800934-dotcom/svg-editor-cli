@@ -8,6 +8,17 @@ import { Editor } from '../dist/application/Editor.js';
 import { Interpreter } from '../dist/cli/Interpreter.js';
 import { NodeFileStore } from '../dist/infrastructure/NodeFileStore.js';
 import { SvgCodec } from '../dist/infrastructure/SvgCodec.js';
+import { Repl } from '../dist/cli/Repl.js';
+import { Readable, Writable } from 'node:stream';
+
+test('interactive REPL shows svg> prompts and continues after an error', async () => {
+  const cli = new Interpreter(new Editor(new NodeFileStore(), new SvgCodec()));
+  let output = '';
+  const destination = new Writable({write(chunk, _encoding, done) { output += chunk.toString(); done(); }});
+  await new Repl(cli).run(Readable.from(['init\r\nwrong\r\ncanvas\r\n']), destination, true);
+  assert.match(output, /svg-editor 0.1/); assert.match(output, /svg> /);
+  assert.match(output, /error: unknown command: wrong/); assert.match(output, /canvas 800x600/);
+});
 
 for (const scenario of ['flowchart', 'session']) test(`real CLI replays the assignment ${scenario} transcript`, () => {
   const dir = mkdtempSync(join(tmpdir(), 'svg-acceptance-'));

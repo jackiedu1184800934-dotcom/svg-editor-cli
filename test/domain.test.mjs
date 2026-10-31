@@ -41,3 +41,19 @@ test('validation and defensive collections preserve the domain invariants', () =
   assert.equal(d.find('r').attributes.get('width'), '1');
   assert.equal(d.children.pop().id, 'r'); assert.equal(d.children.length, 1);
 });
+
+test('cross-parent grouping preserves document order and detects descendant cycles', () => {
+  const d = new Drawing();
+  for (const id of ['left','right']) d.add(factory.create('g', id, []));
+  d.add(factory.create('g','nested',[]),'left');
+  d.add(factory.create('rect','a',['0','0','1','1']),'nested');
+  d.add(factory.create('rect','b',['0','0','1','1']),'right');
+  assert.throws(()=>d.addTo('nested','left'), /own descendant: left/);
+  d.group('merged', ['b','a']);
+  assert.equal(d.parentLabel('merged'), 'svg');
+  assert.deepEqual(d.find('merged').children.map(s=>s.id), ['a','b']);
+  assert.equal(d.find('nested').children.length, 0);
+  assert.equal(d.find('right').children.length, 0);
+  d.delete('merged');
+  assert.throws(()=>d.find('a'), /no such shape: a/);
+});

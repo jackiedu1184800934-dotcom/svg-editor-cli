@@ -1,0 +1,45 @@
+@startuml
+title SVG CLI - Phase 1 dependencies
+skinparam componentStyle rectangle
+skinparam shadowing false
+skinparam backgroundColor #FAFBFC
+skinparam packageBorderColor #64748B
+skinparam defaultFontName SansSerif
+top to bottom direction
+package "cli" as cli {
+  [Main: composition root] as main
+  [Repl / Tokenizer / Interpreter] as repl
+  [CommandRegistry] as registry
+}
+package "application" as app {
+  [Command / concrete commands] as commands
+  [Editor / History / EditCommand] as editor
+  interface FileStore
+  interface DrawingCodec
+}
+package "domain" as domain {
+  [Drawing] as drawing
+  [Shape / GeometryShape / Group] as shapes
+  [Rect / Circle / Ellipse / Line / Text] as leaves
+  [ShapeFactory / ShapeDefinition] as factory
+}
+package "infrastructure" as infra {
+  [NodeFileStore] as files
+  [SvgCodec / ImportTransform] as xml
+}
+main --> repl
+main --> files : inject
+main --> xml : inject
+repl --> registry
+registry --> commands
+commands --> editor
+editor --> FileStore
+editor --> DrawingCodec
+app --> domain
+files ..|> FileStore
+xml ..|> DrawingCodec
+xml --> domain
+shapes <|-- leaves
+drawing --> shapes
+factory --> shapes
+@enduml

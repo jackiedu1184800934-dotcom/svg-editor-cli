@@ -58,6 +58,8 @@ for (const [name, source, message] of [
   ['foreign namespace', '<svg xmlns="wrong"/>', /expected <svg>/],
   ['mismatched viewport', '<svg width="400" height="300" viewBox="1 0 400 300"/>', /unsupported viewBox/],
   ['unsupported transform', wrap('<g id="g" transform="rotate(30)"/>'), /unsupported SVG transform/],
+  ['unexpected root text', wrap('unexpected'), /unexpected text/],
+  ['unexpected shape text', wrap('<rect id="r">unexpected</rect>'), /unexpected text/],
 ]) test(`reader rejects ${name} explicitly`, () => assert.throws(()=>codec.decode(source), message));
 
 test('real file save/read, default path, I/O barriers and failed I/O are atomic', () => {

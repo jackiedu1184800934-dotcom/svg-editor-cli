@@ -1,0 +1,98 @@
+✔ interactive REPL shows svg> prompts and continues after an error (2.608584ms)
+✔ real CLI replays the assignment flowchart transcript (54.8005ms)
+✔ real CLI replays the assignment session transcript (52.362333ms)
+✔ a long deterministic edit sequence restores every prior state then replays exactly (21.3945ms)
+✔ attribute whitelist and decimal/Unicode geometry are checked for every concrete type (1.939083ms)
+✔ production classes use one class per file with matching file names (2.279334ms)
+✔ all production imports obey the documented layer directions (3.71975ms)
+✔ comments, hex colors, empty quotes and escaped quotes tokenize correctly (0.996667ms)
+✔ help works before init; required errors and styles are enforced (1.070583ms)
+✔ all edit commands undo and redo as whole transactions (2.152167ms)
+✔ failed commands preserve document, undo stack, redo stack and io lock (0.57025ms)
+✔ overflow halfway through a composite operation rolls back every child (0.150708ms)
+✔ six concrete shapes implement polymorphic movement, scaling and deep cloning (2.030208ms)
+✔ group uses document order and lowest common parent; nested ungroup restores slots (1.382458ms)
+✔ validation and defensive collections preserve the domain invariants (0.333875ms)
+✔ cross-parent grouping preserves document order and detects descendant cycles (0.415375ms)
+✔ auto ids reserve later explicit ids and warnings follow document order (5.533875ms)
+✔ all shapes, hierarchy, styles, ids and XML special characters round-trip (0.967333ms)
+✔ translate and uniform scale from the assignment normalize nested coordinates (0.473666ms)
+✔ reader rejects duplicate IDs explicitly (0.3055ms)
+✔ reader rejects bad XML explicitly (0.109959ms)
+✔ reader rejects unknown shape explicitly (0.088875ms)
+✔ reader rejects unknown property explicitly (0.087625ms)
+✔ reader rejects external entities explicitly (0.028666ms)
+✔ reader rejects nonfinite number explicitly (0.09975ms)
+✔ reader rejects negative radius explicitly (0.075625ms)
+✔ reader rejects foreign namespace explicitly (0.037375ms)
+✔ reader rejects mismatched viewport explicitly (0.041916ms)
+✔ reader rejects unsupported transform explicitly (0.064208ms)
+✔ reader rejects unexpected root text explicitly (0.054083ms)
+✔ reader rejects unexpected shape text explicitly (0.090709ms)
+✔ real file save/read, default path, I/O barriers and failed I/O are atomic (2.793ms)
+ℹ tests 32
+ℹ suites 0
+ℹ pass 32
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 199.243708
+ℹ start of coverage report
+ℹ ----------------------------------------------------------------------
+ℹ file                  | line % | branch % | funcs % | uncovered lines
+ℹ ----------------------------------------------------------------------
+ℹ dist                  |        |          |         | 
+ℹ  application          |        |          |         | 
+ℹ   Arguments.js        | 100.00 |    77.78 |  100.00 | 
+ℹ   commands            |        |          |         | 
+ℹ    AddToCommand.js    | 100.00 |   100.00 |  100.00 | 
+ℹ    BackCommand.js     | 100.00 |   100.00 |  100.00 | 
+ℹ    CanvasCommand.js   | 100.00 |    85.71 |  100.00 | 
+ℹ    CreateCommand.js   | 100.00 |    90.00 |  100.00 | 
+ℹ    DeleteCommand.js   | 100.00 |   100.00 |  100.00 | 
+ℹ    FrontCommand.js    | 100.00 |   100.00 |  100.00 | 
+ℹ    GroupCommand.js    | 100.00 |   100.00 |  100.00 | 
+ℹ    HelpCommand.js     | 100.00 |   100.00 |  100.00 | 
+ℹ    InitCommand.js     | 100.00 |   100.00 |  100.00 | 
+ℹ    MoveCommand.js     | 100.00 |   100.00 |  100.00 | 
+ℹ    ReadCommand.js     | 100.00 |   100.00 |  100.00 | 
+ℹ    RedoCommand.js     | 100.00 |   100.00 |  100.00 | 
+ℹ    SaveCommand.js     | 100.00 |   100.00 |  100.00 | 
+ℹ    ScaleCommand.js    | 100.00 |   100.00 |  100.00 | 
+ℹ    SetCommand.js      | 100.00 |   100.00 |  100.00 | 
+ℹ    ShowCommand.js     | 100.00 |   100.00 |  100.00 | 
+ℹ    TreeCommand.js     | 100.00 |   100.00 |  100.00 | 
+ℹ    UndoCommand.js     | 100.00 |   100.00 |  100.00 | 
+ℹ    UngroupCommand.js  | 100.00 |   100.00 |  100.00 | 
+ℹ   EditCommand.js      | 100.00 |    77.78 |  100.00 | 
+ℹ   Editor.js           | 100.00 |    94.44 |  100.00 | 
+ℹ   History.js          | 100.00 |   100.00 |  100.00 | 
+ℹ   TreeRenderer.js     | 100.00 |   100.00 |  100.00 | 
+ℹ  cli                  |        |          |         | 
+ℹ   CommandRegistry.js  | 100.00 |   100.00 |  100.00 | 
+ℹ   Interpreter.js      | 100.00 |   100.00 |  100.00 | 
+ℹ   Main.js             | 100.00 |   100.00 |  100.00 | 
+ℹ   Repl.js             | 100.00 |    87.50 |  100.00 | 
+ℹ   Tokenizer.js        | 100.00 |   100.00 |  100.00 | 
+ℹ  domain               |        |          |         | 
+ℹ   Circle.js           | 100.00 |   100.00 |  100.00 | 
+ℹ   Drawing.js          | 100.00 |    93.94 |  100.00 | 
+ℹ   Ellipse.js          | 100.00 |   100.00 |  100.00 | 
+ℹ   GeometryShape.js    | 100.00 |   100.00 |  100.00 | 
+ℹ   Group.js            | 100.00 |    80.00 |  100.00 | 
+ℹ   Line.js             | 100.00 |   100.00 |  100.00 | 
+ℹ   Rect.js             | 100.00 |   100.00 |  100.00 | 
+ℹ   Shape.js            | 100.00 |   100.00 |  100.00 | 
+ℹ   ShapeDefinition.js  |  93.94 |    93.33 |  100.00 | 13-14
+ℹ   ShapeFactory.js     | 100.00 |   100.00 |  100.00 | 
+ℹ   Text.js             | 100.00 |   100.00 |  100.00 | 
+ℹ   Value.js            |  94.74 |    77.78 |  100.00 | 27-28
+ℹ  infrastructure       |        |          |         | 
+ℹ   ImportTransform.js  | 100.00 |   100.00 |  100.00 | 
+ℹ   NodeFileStore.js    | 100.00 |   100.00 |  100.00 | 
+ℹ   SvgCodec.js         | 100.00 |    86.67 |  100.00 | 
+ℹ ----------------------------------------------------------------------
+ℹ all files             |  99.68 |    94.15 |  100.00 | 
+ℹ ----------------------------------------------------------------------
+ℹ end of coverage report

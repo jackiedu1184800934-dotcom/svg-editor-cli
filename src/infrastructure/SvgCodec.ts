@@ -48,6 +48,7 @@ export class SvgCodec implements DrawingCodec {
       }
     }
     const warnings: string[] = [];
+    this.assertWhitespace(root);
     for (const element of this.elements(root)) drawing.add(this.readElement(element, reserved, warnings, new ImportTransform(), new Map(), 0));
     return { drawing, warnings };
   }
@@ -56,6 +57,14 @@ export class SvgCodec implements DrawingCodec {
 
   private elements(parent: Element): Element[] {
     return Array.from(parent.childNodes).filter(node => node.nodeType === 1) as Element[];
+  }
+
+  private assertWhitespace(parent: Element): void {
+    for (const node of Array.from(parent.childNodes)) {
+      if ((node.nodeType === 3 || node.nodeType === 4) && node.nodeValue?.trim()) {
+        throw new Error(`unexpected text in <${parent.tagName}>`);
+      }
+    }
   }
 
   private readElement(element: Element, reserved: Set<string>, warnings: string[],
@@ -76,12 +85,11 @@ export class SvgCodec implements DrawingCodec {
     const effective = new Map([...inherited, ...attributes]);
     const children = this.elements(element);
     if (shape instanceof Group) {
-      for (const node of Array.from(element.childNodes)) {
-        if ((node.nodeType === 3 || node.nodeType === 4) && node.nodeValue?.trim()) throw new Error('unexpected text in SVG group');
-      }
+      this.assertWhitespace(element);
       for (const child of children) shape.insert(this.readElement(child, reserved, warnings, transform, effective, depth + 1));
     } else {
       if (children.length) throw new Error(`nested elements are not supported in <${type}>`);
+      if (shape.textContent === undefined) this.assertWhitespace(element);
       shape.scale(transform.scaleFactor); shape.move(transform.offsetX, transform.offsetY);
       if (transform.scaleFactor !== 1) {
         shape.set('stroke-width', String(this.length(effective.get('stroke-width') ?? '1', 'stroke-width') * transform.scaleFactor));

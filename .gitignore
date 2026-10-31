@@ -3,3 +3,5 @@ dist/
 coverage/
 .DS_Store
 *.tmp
+/demo.svg
+/flowchart.svg
